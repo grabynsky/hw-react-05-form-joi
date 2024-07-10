@@ -5,7 +5,7 @@ import {IPosts} from "../models/IPosts";
 const PostComponent: FC<IPosts> = ({userId, id, body, title}) => {
     return (
         <div>
-            <b>{id}</b> <span>UserID {userId}</span>
+            <b>ID: {id}</b> <span>UserID {userId}</span>
             <p>{title}</p>
             <p>{body}</p>
             <hr/>
