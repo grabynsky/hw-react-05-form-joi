@@ -38,7 +38,7 @@ const FormComponent: FC<IProps> = ({setTrigger}) => {
                     <input
                         type="text"
                         className={styles.formInput}
-                        // placeholder={'UserID'}
+                        placeholder={'UserID'}
                         {...register('userId')}
                     />
                 </label>

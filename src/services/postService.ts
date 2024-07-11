@@ -6,7 +6,7 @@ import {IPosts} from "../models/IPosts";
 
 const postService = {
     getAll: ():IRes<IPosts[]>=> axiosInstance.get(urls.posts),
-    createPost: (data:IPosts): IRes<IPosts> => axiosInstance.post(urls.posts, data),
+    createPost: (data: IPosts): IRes<IPosts> => axiosInstance.post(urls.posts, data),
 
 }
 
