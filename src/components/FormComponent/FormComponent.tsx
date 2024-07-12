@@ -30,10 +30,7 @@ const FormComponent: FC<IProps> = ({setPosts, posts}) => {
     const postSubmitCustomHandler:SubmitHandler<IPosts> = async (post: IPosts) => {
         const res =  await postService.createPost(post);
         setPosts([...newPosts, res.data])
-        newPosts
-        console.log(posts)
         reset();
-
     };
 
 
