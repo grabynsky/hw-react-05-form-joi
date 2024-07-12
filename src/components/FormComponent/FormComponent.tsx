@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IPosts} from "../../models/IPosts";
 import styles from './FormComponent.module.css';
@@ -8,10 +8,15 @@ import {joiResolver} from "@hookform/resolvers/joi";
 import postValidator from "../../validators/postValidator";
 
 type IProps = {
-    setTrigger: ISetState<boolean>
+    posts: IPosts[],
+    setPosts: ISetState<IPosts[]>
 }
 
-const FormComponent: FC<IProps> = ({setTrigger}) => {
+const FormComponent: FC<IProps> = ({setPosts, posts}) => {
+
+    const newPosts = [...posts]
+
+
     const {
         formState: {isValid, errors},
         register,
@@ -23,10 +28,15 @@ const FormComponent: FC<IProps> = ({setTrigger}) => {
     })
 
     const postSubmitCustomHandler:SubmitHandler<IPosts> = async (post: IPosts) => {
-        await postService.createPost(post);
-        setTrigger(prevState => !prevState);
+        const res =  await postService.createPost(post);
+        setPosts([...newPosts, res.data])
+        newPosts
+        console.log(posts)
         reset();
+
     };
+
+
     return (
         <div className={styles.main}>
             <form

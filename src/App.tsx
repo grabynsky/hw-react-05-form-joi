@@ -1,16 +1,27 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './App.css';
 import PostsComponent from "./components/PostsComponent";
 import FormComponent from "./components/FormComponent/FormComponent";
+import {IPosts} from "./models/IPosts";
+import {postService} from "./services/postService";
 
 const App:FC = () => {
 
-    const [trigger, setTrigger] = useState<boolean>(false);
+    const [posts, setPosts] = useState<IPosts[]>([]);
+
+
+    useEffect(() => {
+        postService.getAll()
+            .then(value => {
+                setPosts(value.data)
+            })
+    }, []);
+
   return (
     <>
-        <FormComponent setTrigger={setTrigger}/>
+        <FormComponent posts={posts} setPosts={setPosts}/>
         <hr/>
-        <PostsComponent trigger={trigger}/>
+        <PostsComponent posts={posts}/>
     </>
   );
 }

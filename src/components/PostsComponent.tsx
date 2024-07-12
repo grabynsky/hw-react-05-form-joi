@@ -4,20 +4,12 @@ import PostComponent from "./PostComponent";
 import {postService} from "../services/postService";
 
 type IProps = {
-    trigger: boolean,
+    posts: IPosts[],
 }
 
-const PostsComponent: FC<IProps> = ({trigger}) => {
-
-    const [posts, setPosts] = useState<IPosts[]>([]);
+const PostsComponent: FC<IProps> = ({ posts}) => {
 
 
-    useEffect(() => {
-        postService.getAll()
-            .then(value => {
-                setPosts(value.data)
-            })
-    }, [trigger]);
     return (
         <div>
             {
