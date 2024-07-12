@@ -34,6 +34,8 @@ const FormComponent: FC<IProps> = ({setTrigger}) => {
                 onSubmit={handleSubmit(postSubmitCustomHandler)}
             >
 
+                {errors.userId && <p>{errors.userId.message}</p>}
+
                 <label className={styles.label}>User ID:
                     <input
                         type="text"

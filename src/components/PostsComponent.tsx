@@ -11,14 +11,13 @@ const PostsComponent: FC<IProps> = ({trigger}) => {
 
     const [posts, setPosts] = useState<IPosts[]>([]);
 
+
     useEffect(() => {
         postService.getAll()
             .then(value => {
                 setPosts(value.data)
-
             })
     }, [trigger]);
-
     return (
         <div>
             {

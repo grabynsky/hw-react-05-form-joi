@@ -1,7 +1,14 @@
 import Joi from 'joi'
 
 const postValidator = Joi.object({
-    userId: Joi.number().integer().min(1).required(),
+    userId: Joi.number()
+        .integer()
+        .min(1)
+        .max(10)
+        .required()
+        .messages({
+            'number.max': 'You entered more number',
+        }),
     title: Joi.string()
          // .pattern(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{2,100}$/)
         .min(3)
